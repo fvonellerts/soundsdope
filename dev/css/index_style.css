@@ -1,0 +1,784 @@
+@font-face {
+  font-family: "Handwritten";
+  src: url("fonts/Angelface.otf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/Lato-Regular.woff");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: url("fonts/Lato-Light.woff");
+}
+
+/* BLACK THEME*/
+/*$fontcolor: #303030;
+$indexfontcolor: rgb(128, 128, 128);
+$main: #e3e0e0;
+$main2: darken($main, 12%);
+$contrast: #1993a8; //#a81951 #5819a8 #3ccc34
+
+$cover: transparentize($main, 0.15);
+$indexbg: transparentize($main, 0.6);
+
+$border: darken($main, 30%);
+$border2: darken($main, 10%);
+$border3: darken($main, 2%);
+$border4: lighten($border,15%);*/
+html {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  color: #ffffff;
+  font-weight: 100;
+}
+
+body {
+  background: #202020;
+  height: 100%;
+}
+
+p {
+  margin: 0;
+}
+
+.flyin {
+  animation: flyin .5s 1 forwards;
+}
+
+.flyout {
+  animation: flyout .3s 1 forwards;
+}
+
+@keyframes flyin {
+  from {
+    transform: translate(0, 50px);
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes flyout {
+  from {
+    visibility: visible;
+    opacity: 1;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.popin {
+  animation: popin .4s 1 forwards;
+  box-sizing: border-box;
+}
+
+.popout {
+  animation: popout .4s 1 forwards;
+  box-sizing: border-box;
+}
+
+@keyframes popin {
+  from {
+    transform: translate(-50%, -50%) scale(1.1);
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes popout {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.85);
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.uiadd {
+  animation: uiadd .4s 1 forwards;
+  box-sizing: border-box;
+}
+
+.uidelete {
+  animation: uidelete .4s 1 forwards;
+  box-sizing: border-box;
+}
+
+@keyframes uiadd {
+  from {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    margin: 1vw 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+    width: 11.2vw;
+    margin: 1vw;
+  }
+}
+
+@keyframes uidelete {
+  from {
+    visibility: visible;
+    opacity: 1;
+    width: 11.2vw;
+    margin: 1vw;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    margin: 1vw 0;
+  }
+}
+
+@keyframes item_slidein {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 500px;
+  }
+}
+
+@keyframes item_slideout {
+  from {
+    visibility: visible;
+    opacity: 1;
+    max-height: 500px;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+@keyframes extoolbar_slidein {
+  from {
+    visibility: hidden;
+    opacity: 0;
+    left: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+    left: 30vw;
+  }
+}
+
+@keyframes extoolbar_slideout {
+  from {
+    visibility: visible;
+    opacity: 1;
+    left: 30vw;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+    left: 0;
+  }
+}
+
+* {
+  list-style: none;
+  outline: none;
+}
+
+*:not(input) {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon_container.relative {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.icon_container.small {
+  padding: 0 10%;
+}
+
+.icon_container.small .material-icons {
+  font-size: 130%;
+}
+
+.material-icons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #515151;
+  font-size: 18px;
+  transition-duration: .3s;
+}
+
+.material-icons.active {
+  color: #a81951;
+}
+
+.player_container .material-icons {
+  font-size: 40px;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.placeholder_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.placeholder_container .placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  text-align: center;
+}
+
+.placeholder_container .placeholder > .icon_container {
+  width: 90px;
+  height: 90px;
+  float: none;
+  position: static;
+  padding-bottom: 40px;
+  opacity: .3;
+}
+
+.placeholder_container .placeholder > .icon_container .material-icons {
+  font-size: 90px;
+  color: #656565;
+}
+
+.placeholder_container .placeholder p {
+  font-size: 1em;
+  margin: 0;
+  color: #848484;
+  opacity: .3;
+  line-height: 3;
+}
+
+.placeholder_container .placeholder span {
+  background: #a81951;
+  padding: 6px;
+  color: #ffffff;
+  line-height: 2;
+  margin-top: 5px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+.rightclick_popup {
+  width: 200px;
+  height: auto;
+  background: #111111;
+  position: absolute;
+  visibility: hidden;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #323232;
+  margin: 0;
+  padding: 0;
+  border-radius: 0px;
+}
+
+.rightclick_popup li {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #202020;
+  line-height: 40px;
+  font-size: .7em;
+  box-sizing: border-box;
+  padding: 0 4%;
+  cursor: pointer;
+  display: inline-block;
+  transition-duration: .4s;
+}
+
+.rightclick_popup li .icon_container {
+  height: 100%;
+}
+
+.rightclick_popup li:hover {
+  border-bottom: 1px solid #a81951;
+  background: #323232;
+}
+
+.icon_container {
+  position: relative;
+  height: 14px;
+  width: 14px;
+  float: left;
+  padding-right: 18px;
+}
+
+.logo svg {
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo svg .a {
+  fill: #515151;
+}
+
+.logo svg .b, .logo svg .c {
+  fill: #3f3f3f;
+}
+
+.leftside {
+  padding: 2%;
+}
+
+.leftside img {
+  margin: 0;
+}
+
+.centered ul {
+  padding: auto;
+  list-style: georgian;
+}
+
+.start-anim .centered {
+  animation: start-anim-slide 3s forwards;
+}
+
+.start-anim .logo svg {
+  animation: start-anim-fade 1s forwards;
+}
+
+.start-anim header a {
+  animation: start-anim-slide-text 2s 1s forwards;
+}
+
+@keyframes start-anim-fade {
+  from {
+    transform: translate(-50%, -50%) rotate(180deg) scale(0);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes start-anim-slide {
+  from {
+    top: 54%;
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes start-anim-slide-text {
+  from {
+    bottom: 4vh;
+    opacity: 0;
+  }
+  to {
+    bottom: 5vh;
+    opacity: 1;
+  }
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+header {
+  height: 100vh;
+  width: 18%;
+  background: #111111;
+  float: left;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+header a {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Handwritten';
+  color: #515151;
+  font-size: 1.4em;
+  text-decoration: none;
+  transition-duration: .3s;
+}
+
+header a:hover {
+  color: #a81951;
+}
+
+main {
+  height: 100vh;
+  width: 82%;
+  float: left;
+  position: relative;
+  background: url("../img/wallpaper.jpg");
+  background-size: cover;
+}
+
+main #upload_file {
+  display: none;
+}
+
+main .albumbox {
+  width: 60vw;
+}
+
+main .albumbox .topside {
+  width: 100%;
+  margin: 3% 0;
+  padding: 0;
+  text-align: center;
+}
+
+main .albumbox .topside li {
+  font-size: 0.8em;
+  width: 30% !important;
+  margin: 0 1% !important;
+  display: inline-block;
+  padding: 10px;
+}
+
+main .albumbox .topside li.error {
+  background: rgba(238, 58, 58, 0.1);
+}
+
+main .albumbox .topside li, main .albumbox .topside input, main .albumbox .topside .leftside img, main .albumbox .leftside .topside img {
+  font-size: 0.8em;
+  width: 30% !important;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+}
+
+main .albumbox .leftside {
+  width: 33%;
+  height: 100%;
+  float: left;
+  box-sizing: border-box;
+}
+
+main .albumbox .leftside img {
+  padding: 0 !important;
+  padding: 0;
+  margin: 0 !important;
+  cursor: context-menu !important;
+}
+
+main .albumbox .fullside {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 2%;
+  margin: 0;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+main .albumbox #albumlist, main .albumbox .rightside #tracklist {
+  box-sizing: border-box;
+  border-radius: 0px;
+  background: rgba(191, 191, 191, 0.1);
+  border: 1px solid #bfbfbf;
+  padding: 0;
+  margin: 0;
+}
+
+main .albumbox #albumlist li, main .albumbox .rightside #tracklist li {
+  width: 100%;
+  height: 40px;
+  font-size: .75em;
+  cursor: pointer;
+  box-sizing: border-box;
+  list-style-type: none;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+  transition-duration: .5s;
+}
+
+main .albumbox #albumlist li.confirmed, main .albumbox .rightside #tracklist li.confirmed {
+  background: rgba(168, 25, 81, 0.1);
+}
+
+main .albumbox #albumlist li .playing, main .albumbox .rightside #tracklist li .playing {
+  width: 15%;
+  height: 100%;
+  float: left;
+  line-height: 40px;
+  text-align: center;
+  color: #bfbfbf;
+  position: relative;
+}
+
+main .albumbox #albumlist li .playing img, main .albumbox .rightside #tracklist li .playing img {
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+main .albumbox #albumlist li .title, main .albumbox .rightside #tracklist li .title, main .albumbox #albumlist li .upload, main .albumbox .rightside #tracklist li .upload {
+  width: 70%;
+  height: 100%;
+  float: left;
+  line-height: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+main .albumbox #albumlist li .upload, main .albumbox .rightside #tracklist li .upload {
+  width: 50%;
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+main .albumbox #albumlist li .duration, main .albumbox .rightside #tracklist li .duration {
+  width: 15%;
+  height: 100%;
+  float: left;
+  line-height: 40px;
+  text-align: center;
+  color: #bfbfbf;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+main .albumbox #albumlist li input, main .albumbox .rightside #tracklist li input, main .albumbox #albumlist li .topside li, main .albumbox .topside #albumlist li li, main .albumbox .rightside #tracklist li .topside li, main .albumbox .topside .rightside #tracklist li li, main .albumbox #albumlist li .leftside img, main .albumbox .leftside #albumlist li img, main .albumbox .rightside #tracklist li .leftside img, main .albumbox .leftside .rightside #tracklist li img {
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  line-height: 1;
+}
+
+main .albumbox #albumlist li input:first-of-type, main .albumbox .rightside #tracklist li input:first-of-type, main .albumbox #albumlist li .topside li:first-of-type, main .albumbox .topside #albumlist li li:first-of-type, main .albumbox .rightside #tracklist li .topside li:first-of-type, main .albumbox .topside .rightside #tracklist li li:first-of-type, main .albumbox #albumlist li .leftside img:first-of-type, main .albumbox .leftside #albumlist li img:first-of-type, main .albumbox .rightside #tracklist li .leftside img:first-of-type, main .albumbox .leftside .rightside #tracklist li img:first-of-type {
+  margin: 0;
+}
+
+main .albumbox #albumlist li input:hover, main .albumbox .rightside #tracklist li input:hover, main .albumbox #albumlist li .topside li:hover, main .albumbox .topside #albumlist li li:hover, main .albumbox .rightside #tracklist li .topside li:hover, main .albumbox .topside .rightside #tracklist li li:hover, main .albumbox #albumlist li .leftside img:hover, main .albumbox .leftside #albumlist li img:hover, main .albumbox .rightside #tracklist li .leftside img:hover, main .albumbox .leftside .rightside #tracklist li img:hover, main .albumbox #albumlist li input:focus, main .albumbox .rightside #tracklist li input:focus, main .albumbox #albumlist li .topside li:focus, main .albumbox .topside #albumlist li li:focus, main .albumbox .rightside #tracklist li .topside li:focus, main .albumbox .topside .rightside #tracklist li li:focus, main .albumbox #albumlist li .leftside img:focus, main .albumbox .leftside #albumlist li img:focus, main .albumbox .rightside #tracklist li .leftside img:focus, main .albumbox .leftside .rightside #tracklist li img:focus, main .albumbox #albumlist li input:active, main .albumbox .rightside #tracklist li input:active, main .albumbox #albumlist li .topside li:active, main .albumbox .topside #albumlist li li:active, main .albumbox .rightside #tracklist li .topside li:active, main .albumbox .topside .rightside #tracklist li li:active, main .albumbox #albumlist li .leftside img:active, main .albumbox .leftside #albumlist li img:active, main .albumbox .rightside #tracklist li .leftside img:active, main .albumbox .leftside .rightside #tracklist li img:active {
+  color: inherit;
+}
+
+main .albumbox #albumlist li input.upload_share, main .albumbox .rightside #tracklist li input.upload_share, main .albumbox #albumlist li .topside li.upload_share, main .albumbox .topside #albumlist li li.upload_share, main .albumbox .rightside #tracklist li .topside li.upload_share, main .albumbox .topside .rightside #tracklist li li.upload_share, main .albumbox #albumlist li .leftside img.upload_share, main .albumbox .leftside #albumlist li img.upload_share, main .albumbox .rightside #tracklist li .leftside img.upload_share, main .albumbox .leftside .rightside #tracklist li img.upload_share {
+  width: 50%;
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+main .albumbox #albumlist li:hover, main .albumbox .rightside #tracklist li:hover {
+  border-color: #a81951;
+}
+
+main .albumbox #albumlist input, main .albumbox .rightside #tracklist input, main .albumbox #albumlist .topside li, main .albumbox .topside #albumlist li, main .albumbox .rightside #tracklist .topside li, main .albumbox .topside .rightside #tracklist li, main .albumbox #albumlist .leftside img, main .albumbox .leftside #albumlist img, main .albumbox .rightside #tracklist .leftside img, main .albumbox .leftside .rightside #tracklist img {
+  box-sizing: border-box;
+  border: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  line-height: 1;
+}
+
+main .albumbox #albumlist input:first-of-type, main .albumbox .rightside #tracklist input:first-of-type, main .albumbox #albumlist .topside li:first-of-type, main .albumbox .topside #albumlist li:first-of-type, main .albumbox .rightside #tracklist .topside li:first-of-type, main .albumbox .topside .rightside #tracklist li:first-of-type, main .albumbox #albumlist .leftside img:first-of-type, main .albumbox .leftside #albumlist img:first-of-type, main .albumbox .rightside #tracklist .leftside img:first-of-type, main .albumbox .leftside .rightside #tracklist img:first-of-type {
+  margin: 0;
+}
+
+main .albumbox #albumlist input:hover, main .albumbox .rightside #tracklist input:hover, main .albumbox #albumlist .topside li:hover, main .albumbox .topside #albumlist li:hover, main .albumbox .rightside #tracklist .topside li:hover, main .albumbox .topside .rightside #tracklist li:hover, main .albumbox #albumlist .leftside img:hover, main .albumbox .leftside #albumlist img:hover, main .albumbox .rightside #tracklist .leftside img:hover, main .albumbox .leftside .rightside #tracklist img:hover, main .albumbox #albumlist input:focus, main .albumbox .rightside #tracklist input:focus, main .albumbox #albumlist .topside li:focus, main .albumbox .topside #albumlist li:focus, main .albumbox .rightside #tracklist .topside li:focus, main .albumbox .topside .rightside #tracklist li:focus, main .albumbox #albumlist .leftside img:focus, main .albumbox .leftside #albumlist img:focus, main .albumbox .rightside #tracklist .leftside img:focus, main .albumbox .leftside .rightside #tracklist img:focus, main .albumbox #albumlist input:active, main .albumbox .rightside #tracklist input:active, main .albumbox #albumlist .topside li:active, main .albumbox .topside #albumlist li:active, main .albumbox .rightside #tracklist .topside li:active, main .albumbox .topside .rightside #tracklist li:active, main .albumbox #albumlist .leftside img:active, main .albumbox .leftside #albumlist img:active, main .albumbox .rightside #tracklist .leftside img:active, main .albumbox .leftside .rightside #tracklist img:active {
+  background: none;
+  color: inherit;
+}
+
+main .albumbox .rightside {
+  width: 67%;
+  height: 100%;
+  float: left;
+  box-sizing: border-box;
+  padding: 2%;
+  margin: 0;
+  max-height: 40vh;
+  overflow: scroll;
+}
+
+main h1 {
+  font-family: 'Handwritten';
+  color: #bfbfbf;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  font-size: 7em;
+  font-weight: 100;
+  line-height: 0.4;
+  padding: 2%;
+}
+
+main h2 {
+  color: #bfbfbf;
+  text-align: center;
+  width: 100%;
+  line-height: 1;
+  margin: 0;
+  font-size: .9em;
+  margin-bottom: 40px !important;
+}
+
+main .vpn_warning {
+  color: #a81951;
+  margin: -20px 20px 20px 20px;
+  line-height: 2;
+  background: #bfbfbf;
+  text-align: center;
+  border-radius: 0px;
+}
+
+main p {
+  color: #bfbfbf;
+  font-size: .9em;
+  line-height: 1.8;
+}
+
+main p span {
+  background: #a81951;
+  padding: 3px;
+  line-height: 1.5;
+  color: white;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+  -webkit-user-select: all;
+  -webkit-touch-callout: all;
+}
+
+main a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main .button, main input, main .albumbox .topside li, main .albumbox .topside input, main .albumbox .leftside img, main select {
+  width: 60%;
+  text-align: center;
+  cursor: pointer;
+  margin: 1vh auto;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid #bfbfbf;
+  border-radius: 0px;
+  background: none;
+  transition-duration: .5s;
+}
+
+main .button#cover, main input#cover, main .albumbox .topside li#cover, main .albumbox .leftside img#cover, main select#cover {
+  margin: 0;
+}
+
+main .button .icon_container, main input .icon_container, main .albumbox .topside li .icon_container, main .albumbox .topside input .icon_container, main .albumbox .leftside img .icon_container, main select .icon_container {
+  height: 20px;
+  padding-right: 10%;
+}
+
+main .button .icon_container i, main input .icon_container i, main .albumbox .topside li .icon_container i, main .albumbox .topside input .icon_container i, main .albumbox .leftside img .icon_container i, main select .icon_container i {
+  color: #bfbfbf;
+}
+
+main .button:hover, main input:hover, main .albumbox .topside li:hover, main .albumbox .topside input:hover, main .albumbox .leftside img:hover, main select:hover {
+  background: rgba(191, 191, 191, 0.9);
+  color: #a81951;
+}
+
+main .button:hover i, main input:hover i, main .albumbox .topside li:hover i, main .albumbox .topside input:hover i, main .albumbox .leftside img:hover i, main select:hover i {
+  color: #a81951;
+}
+
+main input, main .albumbox .topside li, main .albumbox .topside input, main .albumbox .leftside img {
+  width: 100%;
+}
+
+main select {
+  width: 100%;
+  color: #8c8c8c;
+}
+
+main select:hover, main select:active, main select:focus {
+  border-color: #a81951;
+}
+
+@media only screen and (max-device-width: 800px) {
+  header {
+    height: 10vh;
+    width: 100%;
+  }
+  main {
+    height: 90vh;
+    width: 100%;
+  }
+  .logo svg {
+    width: auto;
+    height: 60%;
+  }
+  .button, main input, main .albumbox .topside li, main .albumbox .topside input, main .albumbox .leftside img, main select {
+    width: 80% !important;
+    padding: 6% !important;
+  }
+}

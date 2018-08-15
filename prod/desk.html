@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/fav/favicon.ico">
+  <link rel="icon" sizes="16x16 32x32 64x64" href="/fav/favicon.ico">
+  <link rel="icon" type="image/png" sizes="196x196" href="/fav/favicon-192.png">
+  <link rel="icon" type="image/png" sizes="160x160" href="/fav/favicon-160.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/fav/favicon-96.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="/fav/favicon-64.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon-16.png">
+  <link rel="apple-touch-icon" href="/fav/favicon-57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/fav/favicon-114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/fav/favicon-72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/fav/favicon-144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/fav/favicon-60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/fav/favicon-120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/fav/favicon-76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/fav/favicon-152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/fav/favicon-180.png">
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+  <meta name="msapplication-TileImage" content="/fav/favicon-144.png">
+  <meta name="msapplication-config" content="/browserconfig.xml">
+
+  <meta name="author" content="thissoundsdope">
+  <meta name="publisher" content="thissoundsdope">
+  <meta name="copyright" content="thissoundsdope">
+  <meta name="description" content="Unlimited free music streaming and upload! No ads, no limitations.">
+  <meta name="keywords" content="music, free, download, stream, urban, upload, rap, hip hop, electro, pop, album, online, itunes, full, unlimited, soundsdope, dope">
+  <title>Soundsdope NL - Freedom streaming</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="css/lib/bootstrap-tour-standalone.min.css" rel="stylesheet">
+  <link href="css/lib/perfect-scrollbar.min.css" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/desk_style.css" />
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html"><div class="logo">
+      <svg viewBox="0 0 64.67 31.5"><polyline class="a" points="0 15.5 16.83 31.5 33.33 15.5 49.5 0 64.67 15.5"/><path class="a" d="M100,100" transform="translate(-66.67 -84.5)"/><path class="a" d="M116.17,84.5" transform="translate(-66.67 -84.5)"/><polyline class="b" points="0 15.5 18.46 0 18.46 15.5"/><polyline class="b" points="49.5 15.5 49.5 31.5 64.67 15.5"/><path class="b" d="M100.42,100" transform="translate(-66.67 -84.5)"/><path class="b" d="M131.76,100" transform="translate(-66.67 -84.5)"/></svg>
+    </div></a>
+
+    <ul class="toolbar">
+      <li class="main_toolbar" id="open_desk"><div class="icon_container relative"><i class="material-icons">favorite_border</i><span>Favorites</span></div></li>
+      <li class="main_toolbar" id="open_cloud"><div class="icon_container relative"><i class="material-icons">cloud_queue</i><span>Store</span></div></li>
+      <li class="main_toolbar" id="open_playlist"><div class="icon_container relative"><i class="material-icons">queue_music</i><span>Playlist</span></div><span id="playlist_count" class="tooltip"></span></li>
+
+
+      <li data-id="search_zone" class="item_cloud"><div class="icon_container small"><i class="material-icons">search</i></div><input id="cloud_search" type="text" placeholder="Search cloud..."></input><span></span></li>
+      <li class="item_desk"><div class="icon_container small"><i class="material-icons">search</i></div><input id="desk_search" type="text" placeholder="Search desk..."></input></li>
+
+      <!--<li data-id="select_discover" class="item_cloud"><div class="icon_container small"><i class="material-icons">stars</i></div>Discover<span><div class="icon_container"><i class="material-icons">keyboard_arrow_right</i></div></span></li>-->
+      <li data-id="save_zone" class="item_playlist"><div class="icon_container small"><i class="material-icons">save</i></div>Save<span><div class="icon_container"><i class="material-icons">keyboard_arrow_right</i></div></span></li>
+      <li data-id="" id="playlist_clear" class="item_playlist"><div class="icon_container small"><i class="material-icons">delete</i></div>Clear<span><div class="icon_container"><i class="material-icons">code</i></div></span></li>
+      <li data-id="select_genre" class="item_cloud"><div class="icon_container small"><i class="material-icons small">speaker_group</i></div>Genre<span><div class="icon_container"><i class="material-icons">keyboard_arrow_right</i></div></span></li>
+    </ul>
+
+    <div class="playerbar">
+      <div id="player_info" data-action="album" class="cover">
+        <div class="infos">
+          <div id="player_info_albumname" class="field2">Start</div>
+          <div id="player_info_artist" class="field1">playing</div>
+          <div id="player_info_trackname" class="field3">something...</div>
+          <div class="rc" data-action="album"><i class="material-icons">more_horiz</i></div>
+        </div>
+        <div class="loader">
+          <svg viewBox="0 0 64.67 31.5"><polyline class="a" points="0 15.5 16.83 31.5 33.33 15.5 49.5 0 64.67 15.5"/><path class="a" d="M100,100" transform="translate(-66.67 -84.5)"/><path class="a" d="M116.17,84.5" transform="translate(-66.67 -84.5)"/><polyline class="b" points="0 15.5 18.46 0 18.46 15.5"/><polyline class="b" points="49.5 15.5 49.5 31.5 64.67 15.5"/><path class="b" d="M100.42,100" transform="translate(-66.67 -84.5)"/><path class="b" d="M131.76,100" transform="translate(-66.67 -84.5)"/></svg>
+        </div>
+        <img id="player_info_cover" src="img/placeholder.jpg"></img>
+      </div>
+      <div class="controls">
+        <div class="bar_container">
+          <div id="play_slider_bar" class="bar">
+            <div id="play_slider" class="slider"></div>
+          </div>
+          <div id="play_slider_time" class="bar_info">0:00</div>
+          <div id="play_slider_maxtime" class="bar_info">0:00</div>
+        </div>
+
+        <ul class="player_container">
+          <li id="play_back"><i class="material-icons">skip_previous</i></li>
+          <li id="play_play"><i class="material-icons">play_arrow</i></li>
+          <li id="play_stop"><i class="material-icons">pause</i></li>
+          <li id="play_forward"><i class="material-icons">skip_next</i><span id="play_forward_info" class="nextup"></span></li>
+        </ul>
+
+        <div class="commands">
+          <ul class="command_container">
+            <li id="settings_random"><div class="icon_container"><i class="material-icons">shuffle</i></div><span>Shuffle</span></li>
+            <li id="settings_repeat"><div class="icon_container"><i id="settings_repeat_icon" class="material-icons">repeat</i></div><span>Loop</span></li>
+            <li id="settings_preload"><div class="icon_container"><i class="material-icons">graphic_eq</i></div><span>Preload</span></li>
+            <li id="settings_volume"><div class="icon_container"><i class="material-icons">volume_up</i></div>
+              <span>Volume</span>
+            </li>
+            <div class="bar_container">
+              <div id="settings_volume_bar" class="bar">
+                <div id="settings_volume_slider" class="slider"></div>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <audio data-volume="1" id="audio_player"></audio>
+      <audio id="audio_player2"></audio>
+    </div>
+  </header>
+
+  <div class="extended_toolbar">
+    <div class="top">
+      <span onclick="extoolbar_close()"><div class="icon_container"><i class="material-icons">close</i></div></span>
+    </div>
+    <div class="content">
+      <ul id="search_zone">
+        <li><div class="icon_container small"><i class="material-icons">person</i></div>Artists</li>
+        <ul id="sz_artists">
+        </ul>
+        <li id="fullsearch_albums"><span><div class="icon_container"><i class="material-icons">keyboard_arrow_right</i></div></span><div class="icon_container small"><i class="material-icons">album</i></div>Albums</li>
+        <ul class="imageview" id="sz_albums">
+        </ul>
+        <li><div class="icon_container small"><i class="material-icons">audiotrack</i></div>Tracks</li>
+        <ul id="sz_tracks">
+        </ul>
+      </ul>
+      <ul id="select_discover">
+        <li data-discover="1"><div class="icon_container small"><i class="material-icons">account_circle</i></div>Based on your Desk</li>
+        <li data-discover="2"><div class="icon_container small"><i class="material-icons">stars</i></div>Most Played</li>
+        <li data-discover="2"><div class="icon_container small"><i class="material-icons">new_releases</i></div>Fresh &amp; Leaked</li>
+      </ul>
+      <ul id="save_zone">
+        <li><input id="save_name" type="text" placeholder="Name..."></input></li>
+        <li id="playlist_save"><div class="icon_container small"><i class="material-icons">account_circle</i></div>Store</li>
+        <!--<li id="playlist_download"><div class="icon_container small"><i class="material-icons">file_download</i></div>Download</li>
+        <li id="playlist_share"><div class="icon_container small"><i class="material-icons">share</i></div>Share</li>-->
+      </ul>
+      <ul id="select_genre" class="active">
+        <li class="dropdown">Electronic<ul><li data-genre="8">Club House &amp; Dance</li><li data-genre="9">Deep House &amp; Ambient</li><li data-genre="10">Drum and Bass &amp; EDM Trap</li><li data-genre="11">Techno, Trance &amp; Hardstyle</li><li data-genre="12">Crossover Electro</li></ul></li><li class="dropdown">Hip-Hop<ul><li data-genre="14">Trap &amp; Drill</li><li data-genre="15">Weed Influenced</li><li data-genre="16">Gangsta rap</li><li data-genre="17">Oldschool Classics</li><li data-genre="18">R&amp;B &amp; Newschool</li><li data-genre="19">Crossover Rap</li></ul></li><li data-genre="3">Pop</li><li class="dropdown">Rock<ul><li data-genre="20">Rock</li><li data-genre="21">Hard Rock</li><li data-genre="22">Pop Rock</li><li data-genre="23">Grunge</li><li data-genre="24">Metal</li><li data-genre="25">Crossover Rock</li></ul></li><li class="dropdown">African<ul><li data-genre="26">Jazz &amp; Soul</li><li data-genre="27">Blues</li><li data-genre="28">Reggae &amp; Ska</li><li data-genre="29">Various</li><li data-genre="30">Crossover</li></ul></li><li data-genre="6">Country &amp; Folk</li><li data-genre="7">Classical</li><li data-genre="31">Indie</li><li data-genre="34">Alternative</li>
+      </ul>
+      <ul id="select_order">
+        <li data-order="1"><div class="icon_container small"><i class="material-icons">sort_by_alpha</i></div>Album Artists - abc</li>
+        <li data-order="2"><div class="icon_container small"><i class="material-icons">sort_by_alpha</i></div>Albums - abc</li>
+        <li data-order="3"><div class="icon_container small"><i class="material-icons">fiber_new</i></div>Newest</li>
+        <li data-order="4" class="active"><div class="icon_container small"><i class="material-icons">shuffle</i></div>Shuffle</li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <div id="album_browser">
+      <div data-action="album" id="album_info" class="coverview">
+        <div class="infos">
+          <div id="coverview_info_albumname" class="field2"></div>
+          <div id="coverview_info_artist" class="field1"></div>
+          <div class="rc" data-action="album"><i class="material-icons">more_horiz</i></div>
+        </div>
+        <img id="coverview_info_cover" src=""></img>
+      </div>
+
+      <ul id="album_content" class="contentview">
+      </ul>
+    </div>
+
+    <div class="view" id="desk_view">
+      <div id="desk_placeholder" class="placeholder_container">
+        <div class="placeholder">
+          <div class="icon_container"><i class="material-icons">favorite_border</i></div>
+          <p></p>
+          <span id="tour">New to soundsdope?</span>
+        </div>
+      </div>
+      <ul id="desk_content" class="albumview">
+      </ul>
+      <div onclick="close_popup();" class="block"></div>
+    </div>
+
+    <div class="view" id="cloud_view">
+
+      <div id="cloud_placeholder" class="placeholder_container">
+        <div class="placeholder">
+          <div class="icon_container"><i class="material-icons">cloud_queue</i></div>
+          <p>Search or list content...</p>
+        </div>
+      </div>
+
+      <ul id="cloud_content" class="albumview">
+      </ul>
+      <div onclick="close_popup()" class="block"></div>
+    </div>
+
+    <div class="view" id="playlist_view">
+
+      <div id="playlist_placeholder" class="placeholder_container">
+        <div class="placeholder">
+          <div class="icon_container"><i class="material-icons">playlist_add</i></div>
+          <p>Playlist empty...</p>
+        </div>
+      </div>
+
+      <ul id="playlist_content">
+      </ul>
+      <div onclick="close_popup();" class="block"></div>
+    </div>
+  </main>
+
+</body>
+
+<script src="js/lib/jquery-2.1.3.min.js"></script>
+<script src="js/lib/jquery.cookie.js"></script>
+<script src="js/lib/jquery.storageapi.min.js"></script>
+<script src="js/lib/jquery.noty.packaged.min.js"></script>
+<script src="js/lib/bootstrap-tour-standalone.min.js"></script>
+<script src="js/lib/perfect-scrollbar.jquery.min.js"></script>
+<script src="js/lib/imagesloaded.pkgd.min.js"></script>
+
+<script src="js/main_rightclick.js"></script>
+<script src="js/desk_popup.js"></script>
+<script src="js/desk_functions.js"></script>
+<script src="js/desk_boot.js"></script>
+<script src="js/desk_player_functions.js"></script>
+</html>

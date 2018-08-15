@@ -1,0 +1,389 @@
+@font-face {
+  font-family: "Handwritten";
+  src: url("fonts/Angelface.otf");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/Lato-Regular.woff");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: url("fonts/Lato-Light.woff");
+}
+
+/* BLACK THEME*/
+/*$fontcolor: #303030;
+$indexfontcolor: rgb(128, 128, 128);
+$main: #e3e0e0;
+$main2: darken($main, 12%);
+$contrast: #1993a8; //#a81951 #5819a8 #3ccc34
+
+$cover: transparentize($main, 0.15);
+$indexbg: transparentize($main, 0.6);
+
+$border: darken($main, 30%);
+$border2: darken($main, 10%);
+$border3: darken($main, 2%);
+$border4: lighten($border,15%);*/
+html {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  color: #ffffff;
+  font-weight: 100;
+}
+
+body {
+  background: #202020;
+  height: 100%;
+}
+
+p {
+  margin: 0;
+}
+
+.flyin {
+  animation: flyin .5s 1 forwards;
+}
+
+.flyout {
+  animation: flyout .3s 1 forwards;
+}
+
+@keyframes flyin {
+  from {
+    transform: translate(0, 50px);
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes flyout {
+  from {
+    visibility: visible;
+    opacity: 1;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.popin {
+  animation: popin .4s 1 forwards;
+  box-sizing: border-box;
+}
+
+.popout {
+  animation: popout .4s 1 forwards;
+  box-sizing: border-box;
+}
+
+@keyframes popin {
+  from {
+    transform: translate(-50%, -50%) scale(1.1);
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes popout {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.85);
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.uiadd {
+  animation: uiadd .4s 1 forwards;
+  box-sizing: border-box;
+}
+
+.uidelete {
+  animation: uidelete .4s 1 forwards;
+  box-sizing: border-box;
+}
+
+@keyframes uiadd {
+  from {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    margin: 1vw 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+    width: 11.2vw;
+    margin: 1vw;
+  }
+}
+
+@keyframes uidelete {
+  from {
+    visibility: visible;
+    opacity: 1;
+    width: 11.2vw;
+    margin: 1vw;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    margin: 1vw 0;
+  }
+}
+
+@keyframes item_slidein {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 500px;
+  }
+}
+
+@keyframes item_slideout {
+  from {
+    visibility: visible;
+    opacity: 1;
+    max-height: 500px;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+@keyframes extoolbar_slidein {
+  from {
+    visibility: hidden;
+    opacity: 0;
+    left: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+    left: 30vw;
+  }
+}
+
+@keyframes extoolbar_slideout {
+  from {
+    visibility: visible;
+    opacity: 1;
+    left: 30vw;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+    left: 0;
+  }
+}
+
+* {
+  list-style: none;
+  outline: none;
+}
+
+*:not(input) {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon_container.relative {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.icon_container.small {
+  padding: 0 10%;
+}
+
+.icon_container.small .material-icons {
+  font-size: 130%;
+}
+
+.material-icons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #515151;
+  font-size: 18px;
+  transition-duration: .3s;
+}
+
+.material-icons.active {
+  color: #a81951;
+}
+
+.player_container .material-icons {
+  font-size: 40px;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.placeholder_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.placeholder_container .placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  text-align: center;
+}
+
+.placeholder_container .placeholder > .icon_container {
+  width: 90px;
+  height: 90px;
+  float: none;
+  position: static;
+  padding-bottom: 40px;
+  opacity: .3;
+}
+
+.placeholder_container .placeholder > .icon_container .material-icons {
+  font-size: 90px;
+  color: #656565;
+}
+
+.placeholder_container .placeholder p {
+  font-size: 1em;
+  margin: 0;
+  color: #848484;
+  opacity: .3;
+  line-height: 3;
+}
+
+.placeholder_container .placeholder span {
+  background: #a81951;
+  padding: 6px;
+  color: #ffffff;
+  line-height: 2;
+  margin-top: 5px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+.rightclick_popup {
+  width: 200px;
+  height: auto;
+  background: #111111;
+  position: absolute;
+  visibility: hidden;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #323232;
+  margin: 0;
+  padding: 0;
+  border-radius: 0px;
+}
+
+.rightclick_popup li {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #202020;
+  line-height: 40px;
+  font-size: .7em;
+  box-sizing: border-box;
+  padding: 0 4%;
+  cursor: pointer;
+  display: inline-block;
+  transition-duration: .4s;
+}
+
+.rightclick_popup li .icon_container {
+  height: 100%;
+}
+
+.rightclick_popup li:hover {
+  border-bottom: 1px solid #a81951;
+  background: #323232;
+}
+
+.icon_container {
+  position: relative;
+  height: 14px;
+  width: 14px;
+  float: left;
+  padding-right: 18px;
+}
+
+.logo svg {
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo svg .a {
+  fill: #515151;
+}
+
+.logo svg .b, .logo svg .c {
+  fill: #3f3f3f;
+}
+
+.leftside {
+  padding: 2%;
+}
+
+.leftside img {
+  margin: 0;
+}
+
+.centered ul {
+  padding: auto;
+  list-style: georgian;
+}

@@ -1,0 +1,1239 @@
+@import "main_style";
+
+body:not(.loaded) {
+  header {
+    width: 18%;
+    .toolbar {
+      opacity: 0;
+    }
+    .playerbar {
+      opacity: 0;
+    }
+
+    .logo {
+      height: 100%;
+
+      svg {
+        width: 50%;
+      }
+    }
+  }
+  .extended_toolbar {
+    width: 10%;
+  }
+  main #desk_view.view {
+    opacity: 0;
+  }
+}
+
+.playing,.title,.duration,.rc {
+  height: 100%;
+  float: left;
+  line-height: 50px;
+  text-align: center;
+  color: $border;
+  transition-duration: .3s;
+  font-size: 1em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.playing {
+  width: 12%;
+  &.active {
+    color: $contrast;
+    font-size: 1.1em;
+  }
+}
+
+.title {
+  text-align: left;
+  color: $fontcolor;
+  width: 64%;
+}
+
+.coverview:hover ~ .albumview li {
+  & > .playing, & > .duration {
+    color: lighten($main, 55%);
+  }
+}
+
+li:hover {
+  > .rc {
+    opacity: 1;
+  }
+  & > .playing, & > .duration {
+    color: lighten($main, 55%);
+  }
+}
+.rc {
+  cursor: pointer;
+  opacity: 0;
+  @extend .icon_container;
+  width: 8%;
+  padding-right: 0;
+  i {
+    color: lighten($main, 54%);
+    font-size: 26px;
+  }
+}
+
+.duration {
+  width: 16%;
+}
+
+.rightclick_popup {
+  z-index: 3;
+}
+
+.block {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: $main2;
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: .3s;
+  top:0;
+  left: 0;
+}
+
+.ps-container:hover > .ps-scrollbar-y-rail:hover {
+  background: $main;
+}
+.ps-container.ps-in-scrolling.ps-y:hover > .ps-scrollbar-y-rail {
+  background: $main;
+}
+
+#block_active {
+  visibility: visible;
+  opacity: 0.5;
+}
+
+#album_browser {
+  position: fixed;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  background: $main;
+  width: 50%;
+  height: 60%;
+  z-index: 3;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+  border-radius: $borderradius;
+
+  .coverview {
+    width: 30%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    float: left;
+
+    &:hover .rc {
+      opacity: 1;
+    }
+
+    .infos {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background: $cover;
+      z-index: 1;
+      line-height: 1.6;
+      padding: 13% 10%;
+      box-sizing: border-box;
+      white-space: nowrap;
+
+      .field1, .field2 {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 85%;
+        float: left;
+      }
+
+      .field1 {
+        font-size: .8em;
+      }
+      .field2 {
+        font-size: 1.1em;
+      }
+
+      .rc {
+        width: 15%;
+        float: left;
+        overflow: visible;
+      }
+    }
+
+    img {
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .stretch {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .contentview {
+    height: 100%;
+    width: 70%;
+    float: left;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    position: relative;
+
+    li {
+      overflow: hidden;
+      width: 100%;
+      height: 50px;
+      font-size: .75em;
+      cursor: pointer;
+      box-sizing: border-box;
+
+      border-bottom: 1px solid $main3;
+
+      transition-duration: .5s;
+
+      &:hover {
+        background: $main3;
+        border-bottom: 1px solid $contrast;
+      }
+    }
+  }
+}
+
+header {
+  width: 30%;
+  height: 100%;
+  position: fixed;
+  background: $main;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+  transition-duration: 1s;
+  transition-delay: .3s;
+
+  .logo {
+    height: 15%;
+    width: 100%;
+    position: relative;
+    transition-duration: 1s;
+    transition-delay: .3s;
+    background: $main;
+
+    svg {
+      width: 25%;
+      cursor: pointer;
+      transition-duration: 1s;
+    }
+  }
+
+  span.tooltip {
+    position: absolute;
+    top: -5vh;
+    line-height: 5vh;
+    height: 5vh;
+    left: 0;
+    width: 60%;
+    margin: 0 0 0 20%;
+    text-align: center;
+    border-bottom: 1px solid $contrast;
+    color: $border;
+    font-size: 1em;
+    font-weight: 500;
+    opacity: 0;
+    visibility: hidden;
+    transition-duration: .4s;
+
+    &:after, &:before {
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      transform: translateY(-3px);
+      transition-duration: .4s;
+    }
+
+    &:after {
+      border-color: rgba(136, 183, 213, 0);
+      border-top-color: $main;
+      border-width: 5px;
+      margin-left: -5px;
+    }
+    &:before {
+      border-color: rgba(0, 0, 0, 0);
+      border-top-color: $contrast;
+      border-width: 6px;
+      margin-left: -6px;
+    }
+
+    &.active:not(#play_forward_info) {
+      opacity: 1;
+      visibility: visible;
+      &:after, &:before {
+        transform: translateY(0);
+      }
+
+    }
+  }
+
+  .toolbar, .playerbar {
+    width: 100%;
+    float: left;
+  }
+
+  .toolbar {
+    box-sizing: border-box;
+    margin: 0;
+    height: 35%;
+
+    #open_desk.active {
+      & ~ .item_cloud {
+        display: none;
+      }
+      & ~ .item_desk {
+        display: block;
+      }
+      & ~ .item_playlist {
+        display: none;
+      }
+    }
+    #open_cloud.active {
+      & ~ .item_desk {
+        display: none;
+      }
+      & ~ .item_cloud {
+        display: block;
+      }
+      & ~ .item_playlist {
+        display: none;
+      }
+    }
+    #open_playlist.active {
+      & ~ .item_desk {
+        display: none;
+      }
+      & ~ .item_playlist {
+        display: block;
+      }
+      & ~ .item_cloud {
+        display: none;
+      }
+    }
+
+    li {
+      width: 90%;
+      float: left;
+      overflow: hidden;
+
+      margin: 0 5%;
+
+      line-height: 7vh;
+      height: 7vh;
+      cursor: pointer;
+      border: none;
+      border-bottom: 1px solid $border3;
+      box-sizing: border-box;
+      font-size: 0.9em;
+      transition-duration: .5s;
+
+      &.main_toolbar {
+        border-bottom: 1px solid $border2;
+        width: 33.33%;
+        margin: 0;
+        position: relative;
+        overflow: visible;
+
+        background: $main3;
+
+        &:hover,&:focus {
+          border-bottom: 1px solid $contrast;
+        }
+
+        .icon_container {
+          i {
+            top: 35%;
+          }
+          span {
+            text-align: center;
+            color: $border;
+            transition-duration: .4s;
+            @extend .centered;
+            top: 65%;
+          }
+        }
+
+
+      }
+
+      &:hover,&:focus {
+        border-bottom: 1px solid $border2;
+      }
+
+      .icon_container {
+        height: 7vh;
+      }
+
+      input {
+        width: 70%;
+        height: 100%;
+        border: none;
+        background: none;
+        box-sizing: border-box;
+      }
+
+      span {
+        float: right;
+        font-size: .9em;
+        color: $border;
+      }
+
+      &.active {
+        border-bottom: 1px solid $contrast;
+
+        .icon_container span {
+          color: $contrast;
+        }
+
+        .material-icons {
+          color: $contrast;
+        }
+      }
+      ul {
+        display: none;
+      }
+
+    }
+
+  }
+
+  .playerbar {
+    height: 50%;
+
+    .cover {
+      height: 60%;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      cursor:pointer;
+
+      &:hover .rc {
+        opacity: 1;
+      }
+
+      .infos {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: $cover;
+        z-index: 1;
+        padding: 7% 0;
+        box-sizing: border-box;
+        white-space: nowrap;
+
+        .field1, .field2, .field3 {
+          padding: 0 0 0 7%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 75%;
+          float: left;
+          line-height: 1.6;
+        }
+
+        .field1 {
+          font-size: .7em;
+        }
+        .field2 {
+          font-size: .8em;
+        }
+        .field3 {
+          font-size: .9em;
+        }
+
+        .rc {
+          width: 15%;
+          float: left;
+          overflow: visible;
+        }
+      }
+
+      .loader {
+        width: 100%;
+        height: 100%;
+        display: none;
+
+        svg {
+          fill: none;
+          z-index: 1;
+          width: 20%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          .a,.b {
+            stroke-linecap: round;
+            stroke: $contrast;
+            stroke-width: 1px;
+            stroke-dasharray: 50;
+            animation: dash 5s linear infinite;
+          }
+
+          @keyframes dash {
+            to {
+              stroke-dashoffset: 700;
+            }
+          }
+        }
+      }
+
+      img {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .controls {
+      height: 40%;
+      width: 100%;
+      box-sizing: border-box;
+
+      .bar_container {
+        height: 15%;
+        padding: 0 8%;
+        padding-top: 3vh;
+        width: 84%;
+
+        .bar {
+          margin: 0 auto;
+          height: 4px;
+          border-radius: 2px;
+          background: $main2;
+          cursor: pointer;
+
+          .slider {
+            height: 100%;
+            border-radius: 2px;
+            background: $contrast;
+          }
+        }
+
+        .bar_info {
+          padding-top: 3px;
+          font-size: .6em;
+          float: left;
+
+          &:last-of-type {
+            float: right;
+          }
+        }
+      }
+
+      .player_container {
+        width: 100%;
+        height: 25%;
+        margin: 0;
+        padding: 0;
+        fill: $fontcolor;
+
+        #play_stop {
+          display: none;
+        }
+
+        #play_stop,#play_play {
+          .material-icons {
+            font-size: 300%;
+          }
+        }
+
+        li {
+          cursor: pointer;
+          height: 100%;
+          float: left;
+          width: 33%;
+          position: relative;
+
+          .material-icons {
+            font-size: 200%;
+          }
+
+          span.nextup {
+            font-size: .7em;
+            width: 100%;
+            height: 40%;
+            color: $contrast;
+            @extend .centered;
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%,50%);
+            transition-duration: .3s;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          &:hover {
+            i {
+              color:$contrast;
+            }
+
+            span.nextup.active {
+              opacity: 1;
+              visibility: visible;
+              transform: translate(-50%,90%);
+            }
+          }
+        }
+      }
+
+      .commands {
+        position: relative;
+        width: 100%;
+        height: 35%;
+        margin-top: 2vh;
+      }
+
+      .command_container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: $main3;
+        position: absolute;
+
+        li {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          width: 25%;
+          float: left;
+          position: relative;
+          cursor: pointer;
+
+          &.active {
+            i {
+              color: $contrast;
+            }
+          }
+
+          .icon_container {
+            padding: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition-duration: .3s;
+
+            i {
+              transition-duration: .2s;
+            }
+          }
+
+          span {
+            @extend .centered;
+            top: 64%;
+            text-align: center;
+            font-size: .7em;
+            color: $border;
+            opacity: 0;
+            transition-duration: .2s;
+            transition-delay: .1s;
+          }
+
+          &:hover {
+            .icon_container {
+              top: 34%;
+            }
+            span {
+              opacity: 1;
+            }
+          }
+        }
+
+        .bar_container {
+          margin: 0;
+          padding: 0;
+          position: absolute;
+          bottom: 0;
+          height: 100%;
+          width: 75%;
+          opacity: 0;
+          visibility: hidden;
+          transition-duration: .4s;
+          background: $main3;
+
+          .bar {
+            width: 90%;
+            margin: 0;
+            margin-left: 10%;
+            top: 50%;
+            position: absolute;
+          }
+        }
+
+        #settings_volume:hover ~ .bar_container {
+          opacity: 1;
+          visibility: visible;
+        }
+        .bar_container:hover {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+
+    audio {
+      display: none;
+    }
+  }
+}
+
+.extended_toolbar {
+  @extend .toolbar;
+  &.opened {
+    animation: extoolbar_slidein .5s 1 forwards;
+  }
+  &.closed {
+    animation: extoolbar_slideout .5s 1 forwards;
+  }
+
+  width: 25vw;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  background: $main3;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  transition-delay: 1s;
+
+
+  li {
+    text-overflow: ellipsis;
+    height: auto !important;
+  }
+
+  .content > ul {
+    display: none;
+  }
+  .content > ul.active {
+    display: block;
+  }
+
+  #select_genre {
+    text-align: center;
+
+    ul {
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      transition-duration: .3s;
+      text-align: center;
+
+      li {
+        font-size: .9em;
+
+        &:hover {
+          border-color: $contrast;
+        }
+
+        &:first-child {
+          border-top: 1px solid $contrast;
+        }
+      }
+
+      &.active {
+        animation: item_slidein .5s 1 forwards;
+        border-color: $contrast;
+      }
+    }
+  }
+
+  #search_zone {
+    > li {
+      color: lighten($border5,20%);
+    }
+
+    li.active + ul {
+      animation: item_slidein .5s 1 forwards;
+    }
+
+    ul {
+      width: 100%;
+      float: left;
+      max-height: 0;
+      overflow: hidden;
+
+      li {
+        width: 90%;
+        margin: 0 5%;
+        font-size: .8em;
+        border-color: lighten($main2,2%);
+
+        &:hover {
+          border-color: $contrast;
+        }
+      }
+    }
+    span {
+      font-size: .7em;
+    }
+
+    .imageview {
+      li {
+        //height: 7vh !important;
+        width: 100%;
+        line-height: 7vh;
+        position: relative;
+        margin: 1vh 0 0 0;
+        border: none;
+
+        img {
+          width: 20%;
+          float: left;
+        }
+
+        p {
+          width: 67.5%;
+          height: 100%;
+          float: left;
+          box-sizing: border-box;
+          margin: 0;
+          line-height: 1.4;
+          padding: 5% 0 5% 5%;
+
+          span {
+            text-align: left;
+            width: 100%;
+            float: left;
+            font-size: .8em;
+          }
+        }
+      }
+    }
+  }
+
+  .top {
+    height: 5%;
+    width: 100%;
+
+    span {
+      .icon_container {
+        cursor: pointer;
+        height: 5vh;
+        width: 4vh;
+        i {
+          font-size: 24px;
+        }
+
+        &:hover {
+          i {
+            color: $contrast;
+          }
+        }
+      }
+      float:right;
+    }
+  }
+
+  .content {
+    height: 95%;
+    width: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    li {
+      width: 100%;
+      float: left;
+
+      line-height: 6vh;
+      height: 6vh;
+      cursor: pointer;
+      border: none;
+      border-bottom: 1px solid $border6;
+      box-sizing: border-box;
+      font-size: 0.8em;
+      transition-duration: .5s;
+      position: relative;
+      white-space: nowrap;
+
+
+      &:hover,&:focus {
+        border-bottom: 1px solid $border;
+      }
+
+      p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 75%;
+        float: left;
+      }
+
+      .icon_container {
+        height: 6vh;
+      }
+
+      span {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: center;
+        width: 12.5%;
+        float: left;
+        font-size: .9em;
+        color: darken($fontcolor, 25%);
+      }
+      &#fullsearch_albums, &#fullsearch_playlists {
+        span {
+          float: right;
+          width: 20%;
+        }
+      }
+
+      input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: none;
+        box-sizing: border-box;
+        padding: 0 10%;
+      }
+
+      &.active {
+        border-bottom: 1px solid $contrast;
+        color: $contrast !important;
+
+        i {
+          color: $contrast;
+        }
+      }
+    }
+  }
+}
+
+main {
+  height: 100%;
+  width: 70%;
+  float: right;
+  position: relative;
+  overflow: hidden;
+
+  .view {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: auto;
+
+    &#cloud_view, &#playlist_view {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &#playlist_view {
+      background: $main2;
+    }
+
+    &#desk_view {
+      opacity: 1;
+      transition-duration: 1s;
+      transition-delay: 1s;
+    }
+
+    .albumview {
+      margin: 0 1.4vw;
+      padding: 0;
+      overflow: auto;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .loadbuttoncontainer {
+
+      width: 100%;
+      height: 9vh;
+      float: left;
+      position: relative;
+
+      #load_button {
+        position: absolute;
+
+        padding: 10px;
+        margin: 10px;
+        background: $border2;
+        border: 1px solid $border;
+        cursor: pointer;
+        font-size: .8em;
+        border-radius: $borderradius;
+        left: 50%;
+        transform: translateX(-50%);
+        transition-duration: .5s;
+        &:hover {
+          border: 1px solid $contrast;
+        }
+      }
+    }
+
+    #desk_placeholder {
+      display: none;
+    }
+
+    #playlist_content {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+
+      li {
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 1px solid $border5;
+        display: flex;
+
+        .coverview {
+          width: 30%;
+          position: relative;
+          overflow: hidden;
+          float: left;
+          cursor: pointer;
+          background-position: center;
+          background-size: cover;
+
+          &:before {
+            background: $cover;
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
+
+          .infos {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            width: 100%;
+            z-index: 1;
+            line-height: 1.6;
+            padding: 0 10%;
+            box-sizing: border-box;
+            white-space: nowrap;
+
+            .field1, .field2 {
+              text-overflow: ellipsis;
+              overflow: hidden;
+              width: 85%;
+              float: left;
+            }
+
+            .field1 {
+              font-size: .8em;
+            }
+            .field2 {
+              font-size: 1.1em;
+            }
+
+            .rc {
+              width: 15%;
+              float: left;
+              overflow: visible;
+            }
+          }
+
+          &:hover {
+            .rc {
+              opacity: 1;
+            }
+          }
+        }
+
+        .albumview {
+          width: 70%;
+          float: left;
+          box-sizing: border-box;
+          padding: 0;
+          margin: 0;
+          white-space: nowrap;
+          position: relative;
+
+          li {
+            overflow: hidden;
+            width: 100%;
+            height: 50px;
+            font-size: .8em;
+            cursor: pointer;
+            box-sizing: border-box;
+
+            border-bottom: 1px solid $border6;
+
+            transition-duration: .5s;
+
+            &:hover {
+              border-bottom: 1px solid $contrast;
+            }
+          }
+        }
+
+      }
+    }
+
+    > .albumview > li {
+      float:left;
+      margin: 1vw;
+      width: 11.4vw;
+      height: 11.4vw;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      z-index: 1;
+      border-radius: $borderradius;
+      border: 1px solid transparent;
+      transition-duration: .5s;
+      background: $border2;
+      box-sizing: border-box;
+
+      .infos {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: $cover;
+        z-index: 1;
+        padding: 7% 0;
+        box-sizing: border-box;
+        white-space: nowrap;
+
+        .field1, .field2 {
+          padding: 0 0 0 10%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 65%;
+          float: left;
+        }
+
+        .field1 {
+          font-size: .75em;
+        }
+        .field2 {
+          font-size: .85em;
+        }
+
+        .rc {
+          width: 15%;
+          float: left;
+          overflow: visible;
+        }
+      }
+
+      img {
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        transition-duration: .8s;
+        border-radius: $borderradius;
+      }
+
+      &:hover {
+        border: 1px solid $contrast;
+
+        .rc {
+          opacity: 1;
+        }
+      }
+
+      .multicover {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+
+        .cover {
+          width: 50%;
+          height: 50%;
+          float: left;
+          position: relative;
+          overflow: hidden;
+        }
+        .midcover {
+          width: 50%;
+          height: 100%;
+          float: left;
+          position: relative;
+          overflow: hidden;
+        }
+        .fullcover {
+          width: 100%;
+          height: 100%;
+          float: left;
+          position: relative;
+          overflow: hidden;
+        }
+
+      }
+    }
+
+    .trackview {
+      margin: 1vw;
+      width: 30vw;
+      height: 20vw;
+    }
+
+    #cloud_view, #playlist_view{
+      visibility: hidden;
+    }
+  }
+
+}
+
+
+.popover {
+  background: $contrast;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid $border4;
+  margin: 0;
+  padding: 0;
+  border-radius: $borderradius;
+  font-family: Lato,sans-serif;
+
+  .popover-title {
+    background: $contrast;
+    border-radius: $borderradius;
+    border-bottom: none;
+  }
+
+  .arrow {
+    border-right-color: $border4 !important;
+
+    &::after {
+      border-right-color: $contrast !important;
+    }
+  }
+}
+
+
+
+
+
+
+
+//
